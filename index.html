@@ -75,9 +75,9 @@
             <div class="col"></div>
             <div class="col">
               <div class="address">
-                <div class="line"><p>ShwePyiThar Township</p></div>
-                <div class="line"><p>Yangon</p></div>
-                <div class="line"><p>Myanmar</p></div>
+                <div class="line"><p>Directors :</p></div>
+                <div class="line"><p>Tim Burton</p></div>
+                <div class="line"><p>Mike Johnson</p></div>
               </div>
               <div class="socials">
                 <div class="line"><p>Facebook</p></div>
@@ -96,7 +96,22 @@
     <script src="https://unpkg.com/split-type"></script>
     <script type="module" src="./app.js"></script>
     <script>
-      document.getElementById('background-video').volume = 0.2;
+      document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("background-video");
+        video.volume = 0.1;
+        setTimeout(() => {
+          video.play().catch((error) => {
+            console.error("Video playback failed:", error);
+            document.addEventListener(
+              "click",
+              () => {
+                video.play();
+              },
+              { once: true }
+            );
+          });
+        }, 1000);
+      });
     </script>
   </body>
 </html>

@@ -163,6 +163,7 @@ img {
     width: 40%;
     height: 50%;
     clip-path: polygon(0 100%, 100% 100%, 100% 100% , 0% 100%);
+    z-index: 10;
 }
 
 .cover-img img {
