@@ -234,3 +234,25 @@ img {
 .word h1, .nav-item p, .line p {
     transform: translateY(100%);
 }
+
+#start-button-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+#start-button {
+    padding: 1em 2em;
+    font-size: 1.5em;
+    background-color: #A7BBC7;
+    color: #1E1E1E;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#start-button:hover {
+    background-color: #D4A75C;
+}

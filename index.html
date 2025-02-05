@@ -90,28 +90,13 @@
         </div>
       </div>
     </div>
+    <div id="start-button-container">
+      <button id="start-button">Start</button>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <script type="module" src="./app.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const video = document.getElementById("background-video");
-        video.volume = 0.1;
-        setTimeout(() => {
-          video.play().catch((error) => {
-            console.error("Video playback failed:", error);
-            document.addEventListener(
-              "click",
-              () => {
-                video.play();
-              },
-              { once: true }
-            );
-          });
-        }, 1000);
-      });
-    </script>
   </body>
 </html>

@@ -2,30 +2,43 @@ document.addEventListener("DOMContentLoaded", () => {
     CustomEase.create(
         "hop",
         "M0,0 C0.355,0.022 0.448,0.079 0.5,0.5 0.542,0.846 0.615,1 1,1"
-    )
+    );
 
     CustomEase.create(
         "hop2",
         "M0,0 C0.078,0.617 0.114,0.716 0.255,0.828 0.373,0.922 0.561,1 1,1"
-    )
+    );
 
     const splitH2 = new SplitType(".site-info h2", {
         types: "lines",
-    })
+    });
 
     splitH2.lines.forEach((line) => {
         const text = line.textContent;
-        const wrapper = document.createElement("div")
-        wrapper.className = "line"
-        const span = document.createElement("span")
-        span.textContent = text
-        wrapper.appendChild(span)
-        line.parentNode.replaceChild(wrapper, line)
-    })
+        const wrapper = document.createElement("div");
+        wrapper.className = "line";
+        const span = document.createElement("span");
+        span.textContent = text;
+        wrapper.appendChild(span);
+        line.parentNode.replaceChild(wrapper, line);
+    });
+    // Ensure video is paused initially
+    const video = document.getElementById("background-video");
+    video.pause(); 
 
-    const mainTl = gsap.timeline()
-    const revealerTl = gsap.timeline()
-    const scaleTl = gsap.timeline()
+
+    // Button click event to start animations
+    document.getElementById("start-button").addEventListener("click", () => {
+        document.getElementById("start-button-container").style.display = "none";
+        startAnimations();
+        video.play();
+    });
+});
+
+function startAnimations() {
+    const mainTl = gsap.timeline();
+    const revealerTl = gsap.timeline();
+    const scaleTl = gsap.timeline();
 
     revealerTl.to(".r-1", {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
@@ -36,17 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
             clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
             duration: 1.5,
             ease: "hop",
-        },
-            "<"
-        )
+        }, "<");
 
     scaleTl.to(".img:first-child", {
         scale: 1,
         duration: 2,
         ease: "power4.inOut",
-    })
+    });
 
-    const images = document.querySelectorAll(".img:not(:first-child)")
+    const images = document.querySelectorAll(".img:not(:first-child)");
 
     images.forEach((img, index) => {
         scaleTl.to(img, {
@@ -54,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
             scale: 1,
             duration: 1.25,
             ease: "power3.out"
-        }, ">-0.5")
-    })
+        }, ">-0.5");
+    });
 
     mainTl
         .add(revealerTl)
@@ -63,20 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
         .add(() => {
             document
                 .querySelectorAll(".img:not(.main)")
-                .forEach((img) => img.remove())
+                .forEach((img) => img.remove());
 
-            const state = Flip.getState(".main")
+            const state = Flip.getState(".main");
 
-            const imagesContainer = document.querySelector(".images")
-            imagesContainer.classList.add("stacked-container")
+            const imagesContainer = document.querySelector(".images");
+            imagesContainer.classList.add("stacked-container");
 
             document.querySelectorAll(".main").forEach((img, i) => {
-                img.classList.add("stacked")
-                img.style.order = i
+                img.classList.add("stacked");
+                img.style.order = i;
                 gsap.set(".img.stacked", {
                     clearProps: "transform, top, left",
-                })
-            })
+                });
+            });
 
             return Flip.from(state, {
                 duration: 2,
@@ -85,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 stagger: {
                     amount: -0.3,
                 }
-            })
+            });
         })
         .to(".word h1, .nav-item p, .line p, .site-info h2 .line span", {
             y: 0,
@@ -99,5 +110,5 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 2,
             ease: "hop",
             delay: -4.75,
-        })
-})
+        });
+}
