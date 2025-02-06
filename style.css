@@ -245,12 +245,16 @@ img {
 
 #start-button {
     padding: 1em 2em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     background-color: #A7BBC7;
     color: #1E1E1E;
     border: none;
+    font-weight: 600;
+    text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 30px;
+    box-shadow: #A7BBC7 0px 0px 10px;
 }
 
 #start-button:hover {
