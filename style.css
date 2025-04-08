@@ -148,6 +148,8 @@ img {
     position: relative;
     font-size: 16px;
     font-weight: 500;
+    cursor: pointer;
+    color: #A7BBC7;
 }
 
 .nav .nav-item p a {
